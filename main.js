@@ -1,8 +1,3 @@
-// QQPlay window need to be inited first
-if (false) {
-    BK.Script.loadlib('GameRes://libs/qqplay-adapter.js');
-}
-
 var loadingBool = true;
 var loadingNum = 0;
 window.boot = function() {
@@ -89,27 +84,6 @@ window.boot = function() {
                 }
             }
             loadingNum++;
-            // if(loadingBool){
-            // 	var loadintT = document.getElementById("loadingText")
-            // }
-            // var percent = 100 * completedCount / totalCount;
-            // if(loadingBool && loadingNum >= 1){
-            // 	   console.log("dskpi",loadingNum);
-            // 	   loadintT.innerHTML = 'loading......' + parseInt(percent)  + '%';
-            // 	   if(percent.toFixed(0) >= 100){
-
-            // 		   loadingBool = false;
-            // 		   loadintT.remove();
-            // 	   }
-            // }
-            // loadingNum ++;
-
-            // var percent = 100 * completedCount / totalCount;
-            // if (progressBar) {
-            // progressBar.style.width = percent.toFixed(2) + '%';
-            // }
-
-
         };
         splash.style.display = 'block';
         // progressBar.style.width = '0%';
@@ -138,12 +112,6 @@ window.boot = function() {
                 } else if (settings.orientation === 'portrait') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
                 }
-                // cc.view.enableAutoFullScreen([
-                //     cc.sys.BROWSER_TYPE_BAIDU,
-                //     cc.sys.BROWSER_TYPE_WECHAT,
-                //     cc.sys.BROWSER_TYPE_MOBILE_QQ,
-                //     cc.sys.BROWSER_TYPE_MIUI,
-                // ].indexOf(cc.sys.browserType) < 0);
                 cc.view.enableAutoFullScreen(false);
             }
 
@@ -154,31 +122,7 @@ window.boot = function() {
                 cc.macro.DOWNLOAD_MAX_CONCURRENT = 2;
             }
         }
-
-        // function loadScene(launchScene) {
-        // cc.director.loadScene(launchScene, null,
-        // function () {
-        // if (cc.sys.isBrowser) {
-        // // show canvas
-        // var canvas = document.getElementById('GameCanvas');
-        // canvas.style.visibility = '';
-        // var div = document.getElementById('GameDiv');
-        // if (div) {
-        // div.style.backgroundImage = '';
-        // }
-        // }
-        // cc.loader.onProgress = null;
-        // console.log('Success to load scene: ' + launchScene);
-        // }
-        // );
-
-        // }
-
         var launchScene = settings.launchScene;
-
-        // load scene
-        // loadScene(launchScene);
-
         var canvas;
 
         if (cc.sys.isBrowser) {
@@ -238,29 +182,9 @@ window.boot = function() {
 };
 
 // main.js is qqplay and jsb platform entry file, so we must leave platform init code here
-if (false) {
-    BK.Script.loadlib('GameRes://src/settings.js');
-    BK.Script.loadlib();
-    BK.Script.loadlib('GameRes://libs/qqplay-downloader.js');
+if (false) {} 
 
-    var ORIENTATIONS = {
-        'portrait': 1,
-        'landscape left': 2,
-        'landscape right': 3
-    };
-    BK.Director.screenMode = ORIENTATIONS[window._CCSettings.orientation];
-    initAdapter();
-    cc.game.once(cc.game.EVENT_ENGINE_INITED, function() {
-        initRendererAdapter();
-    });
-
-    qqPlayDownloader.REMOTE_SERVER_ROOT = "";
-    var prevPipe = cc.loader.md5Pipe || cc.loader.assetLoader;
-    cc.loader.insertPipeAfter(prevPipe, qqPlayDownloader);
-
-    window.boot();
-} else if (window.jsb) {
-
+else if (window.jsb) {
     var isRuntime = (typeof loadRuntime === 'function');
     if (isRuntime) {
         require('src/settings.js');
